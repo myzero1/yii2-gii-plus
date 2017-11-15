@@ -92,22 +92,51 @@ class Generator extends \yii\gii\Generator
             return "The module has been generated successfully. You may $link.";
         }
 
+        $viewPath = '@' . str_replace('\\', '/', $this->ns) . '/' . $this->getThemingName($this->themingID) . '/views';
+
         $output = <<<EOD
 <p>The module has been generated successfully.</p>
 <p>To access the module, you need to add this to your application configuration:</p>
 EOD;
+
         $code = <<<EOD
 <?php
     ......
-    'modules' => [
-        '{$this->themingID}' => [
-            'class' => '{$this->ns}',
+    'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '{$viewPath}',
+                ],
+            ],
         ],
-    ],
     ......
 EOD;
 
-        return $output . '<pre>' . highlight_string($code, true) . '</pre>';
+$output = $output . '<pre>' . highlight_string($code, true) . '</pre>';
+
+$output = $output . '<p> The usefull setting. </p>';
+
+        $code2 = <<<EOD
+<?php
+    ......
+    'components' => [
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'linkAssets' => true,//link to assets,no cache.used in develop.
+            'bundles'=> [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-blue',// setting the skin
+                ],
+            ],
+            'assetMap' => [
+                'AdminLTE.min.css' => '@web/css/AdminLTE.min.css',// replace the google font
+            ],
+        ],
+    ......
+EOD;
+
+        return $output . '<pre>' . highlight_string($code2, true) . '</pre>';
     }
 
     /**
