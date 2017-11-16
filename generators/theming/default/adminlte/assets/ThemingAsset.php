@@ -40,4 +40,6 @@ class ThemingAsset extends AssetBundle
         '<?=$adminLte?>',
         '<?=$html5shiv?>'
     ];
+
+    public $skin = '_all-skins';
 }
