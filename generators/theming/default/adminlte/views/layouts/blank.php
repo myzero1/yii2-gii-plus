@@ -27,7 +27,7 @@ ThemingAsset::register($this);
 
 ?>
 
-<?php $this->beginPage() ?>
+<?= "<?php " ?> $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= "<?= " ?> Yii::$app->language ?>">
 <head>
@@ -46,14 +46,14 @@ ThemingAsset::register($this);
         }
     </style>
 
-    <?php $this->head() ?>
+    <?= "<?php " ?> $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?= "<?php " ?> $this->beginBody() ?>
 
     <?= "<?= " ?> $content ?>
 
-<?php $this->endBody() ?>
+<?= "<?php " ?> $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?= "<?php " ?> $this->endPage() ?>

@@ -8,16 +8,16 @@
  */
 
 ?>
-<?php $this->beginPage(); ?>
+<?= "<?php " ?> $this->beginPage(); ?>
     <!DOCTYPE html>
     <html lang="<?= "<?= " ?> Yii::$app->language ?>">
     <head>
         <?= "<?= " ?> $this->render('//layouts/head') ?>
     </head>
     <body class="bg-black">
-    <?php $this->beginBody(); ?>
+    <?= "<?php " ?> $this->beginBody(); ?>
     <?= "<?= " ?> $content ?>
-    <?php $this->endBody(); ?>
+    <?= "<?php " ?> $this->endBody(); ?>
     </body>
     </html>
-<?php $this->endPage(); ?>
+<?= "<?php " ?> $this->endPage(); ?>
