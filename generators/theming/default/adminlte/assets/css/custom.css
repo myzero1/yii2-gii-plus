@@ -40,5 +40,12 @@
 .box {
     overflow-x: auto;
 }
+.form-horizontal .form-group{
+    margin-right: 0;
+    margin-left: 0;
+}
+.filter-form.form-horizontal .form-group{
+    margin: 0 5px;
+}
 
 /*---------custom.----------------*/

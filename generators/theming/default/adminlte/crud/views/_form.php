@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title"><?=$sBoxTile?></h3>
+            <h3 class="box-title"><?= "<?=" ?>$sBoxTile?></h3>
         </div>
         <?= "<?php " ?>$form = ActiveForm::begin([
           'options' => ['class' => 'form-horizontal'],

@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="box-body">
             <?php if(!empty($generator->searchModelClass)): ?>
-<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
+<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? " " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
 <?php endif; ?>
 
 <?= $generator->enablePjax ? '<?php Pjax::begin(); ?>' : '' ?>
