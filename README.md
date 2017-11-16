@@ -1,17 +1,6 @@
-Gii Extension for Yii 2
+Yii2-gii-plus
 ========================
-
-This extension provides a Web-based code generator, called Gii, for [Yii framework 2.0](http://www.yiiframework.com) applications.
-You can use Gii to quickly generate models, forms, modules, CRUD, etc.
-
-For license information check the [LICENSE](LICENSE.md)-file.
-
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-gii/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-gii)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-gii/downloads.png)](https://packagist.org/packages/yiisoft/yii2-gii)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-gii.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-gii)
-
+It add theming generator and new template for crud.It based on [yiisoft/yii2-gii](https://github.com/yiisoft/yii2-gii)
 
 Installation
 ------------
@@ -21,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --dev --prefer-dist yiisoft/yii2-gii
+php composer.phar require-dev myzero1/yii2-gii-plus：1.*
 ```
 
 or add
 
 ```
-"yiisoft/yii2-gii": "~2.0.0"
+"myzero1/yii2-gii-plus": "~2.0.0"
 ```
 
 to the require-dev section of your `composer.json` file.
@@ -62,21 +51,4 @@ or if you have enabled pretty URLs, you may use the following URL:
 
 ```
 http://localhost/path/to/index.php/yii2giiplus
-```
-
-Using the same configuration for your console application, you will also be able to access Gii via
-command line as follows,
-
-```
-# change path to your application's base path
-cd path/to/AppBasePath
-
-# show help information about Gii
-yii help gii
-
-# show help information about the model generator in Gii
-yii help gii/model
-
-# generate City model from city table
-yii gii/model --tableName=city --modelClass=City
 ```
