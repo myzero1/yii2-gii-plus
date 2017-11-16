@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii2-gii",
+    "name": "myzero1/yii2-gii-plus",
     "description": "The Gii extension for the Yii framework",
     "keywords": ["yii2", "gii", "code generator"],
     "type": "yii2-extension",
