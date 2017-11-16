@@ -45,6 +45,16 @@ class Generator extends \yii\gii\Generator
 
 
     /**
+     * Add custome template,by myzero1
+     */
+    public function init()
+    {
+        parent::init();
+        // var_dump('expression');exit;
+        $this->templates['adminlte crud'] = Yii::getAlias('@yii/gii/generators/theming/default/adminlte/crud');
+    }
+
+    /**
      * @inheritdoc
      */
     public function getName()
