@@ -23,10 +23,8 @@ use yii\helpers\StringHelper;
  */
 class Generator extends \myzero1\yii2giiplus\Generator
 {
-    const THEMING_ADMINLTE = 1;
-
     public $ns;
-    public $themingID = THEMING_ADMINLTE;
+    public $themingID = 1;
 
 
     /**
