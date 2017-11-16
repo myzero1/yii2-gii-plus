@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\gii\generators\form;
+namespace myzero1\yii2giiplus\generators\form;
 
 use Yii;
 use yii\base\Model;
-use yii\gii\CodeFile;
+use myzero1\yii2giiplus\CodeFile;
 
 /**
  * This generator will generate an action view file based on the specified model class.
@@ -19,7 +19,7 @@ use yii\gii\CodeFile;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Generator extends \yii\gii\Generator
+class Generator extends \myzero1\yii2giiplus\Generator
 {
     public $modelClass;
     public $viewPath = '@app/views';

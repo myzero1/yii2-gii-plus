@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\gii;
+namespace myzero1\yii2giiplus;
 
 use Yii;
 use yii\base\BootstrapInterface;
@@ -20,7 +20,7 @@ use yii\web\ForbiddenHttpException;
  * return [
  *     'bootstrap' => ['gii'],
  *     'modules' => [
- *         'gii' => ['class' => 'yii\gii\Module'],
+ *         'gii' => ['class' => 'myzero1\yii2giiplus\Module'],
  *     ],
  * ]
  * ~~~
@@ -44,7 +44,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'yii\gii\controllers';
+    public $controllerNamespace = 'myzero1\yii2giiplus\controllers';
     /**
      * @var array the list of IPs that are allowed to access this module.
      * Each array element represents a single IP filter which can be either an IP address
@@ -92,7 +92,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             ], false);
         } elseif ($app instanceof \yii\console\Application) {
             $app->controllerMap[$this->id] = [
-                'class' => 'yii\gii\console\GenerateController',
+                'class' => 'myzero1\yii2giiplus\console\GenerateController',
                 'generators' => array_merge($this->coreGenerators(), $this->generators),
                 'module' => $this,
             ];
@@ -158,13 +158,13 @@ class Module extends \yii\base\Module implements BootstrapInterface
     protected function coreGenerators()
     {
         return [
-            'model' => ['class' => 'yii\gii\generators\model\Generator'],
-            'crud' => ['class' => 'yii\gii\generators\crud\Generator'],
-            'controller' => ['class' => 'yii\gii\generators\controller\Generator'],
-            'form' => ['class' => 'yii\gii\generators\form\Generator'],
-            'module' => ['class' => 'yii\gii\generators\module\Generator'],
-            'extension' => ['class' => 'yii\gii\generators\extension\Generator'],
-            'theming' => ['class' => 'yii\gii\generators\theming\Generator'],
+            'model' => ['class' => 'myzero1\yii2giiplus\generators\model\Generator'],
+            'crud' => ['class' => 'myzero1\yii2giiplus\generators\crud\Generator'],
+            'controller' => ['class' => 'myzero1\yii2giiplus\generators\controller\Generator'],
+            'form' => ['class' => 'myzero1\yii2giiplus\generators\form\Generator'],
+            'module' => ['class' => 'myzero1\yii2giiplus\generators\module\Generator'],
+            'extension' => ['class' => 'myzero1\yii2giiplus\generators\extension\Generator'],
+            'theming' => ['class' => 'myzero1\yii2giiplus\generators\theming\Generator'],
         ];
     }
 }

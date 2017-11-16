@@ -43,7 +43,7 @@ return [
     'bootstrap' => ['gii'],
     'modules' => [
         'gii' => [
-            'class' => 'yii\gii\Module',
+            'class' => 'myzero1\yii2giiplus\Module',
         ],
         // ...
     ],

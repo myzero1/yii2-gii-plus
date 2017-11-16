@@ -5,9 +5,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\gii\generators\module;
+namespace myzero1\yii2giiplus\generators\module;
 
-use yii\gii\CodeFile;
+use myzero1\yii2giiplus\CodeFile;
 use yii\helpers\Html;
 use Yii;
 use yii\helpers\StringHelper;
@@ -21,7 +21,7 @@ use yii\helpers\StringHelper;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Generator extends \yii\gii\Generator
+class Generator extends \myzero1\yii2giiplus\Generator
 {
     public $moduleClass;
     public $moduleID;

@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\gii\controllers;
+namespace myzero1\yii2giiplus\controllers;
 
 use Yii;
 use yii\web\Controller;
@@ -19,11 +19,11 @@ class DefaultController extends Controller
 {
     public $layout = 'generator';
     /**
-     * @var \yii\gii\Module
+     * @var \myzero1\yii2giiplus\Module
      */
     public $module;
     /**
-     * @var \yii\gii\Generator
+     * @var \myzero1\yii2giiplus\Generator
      */
     public $generator;
 
@@ -117,7 +117,7 @@ class DefaultController extends Controller
     /**
      * Loads the generator with the specified ID.
      * @param string $id the ID of the generator to be loaded.
-     * @return \yii\gii\Generator the loaded generator
+     * @return \myzero1\yii2giiplus\Generator the loaded generator
      * @throws NotFoundHttpException
      */
     protected function loadGenerator($id)

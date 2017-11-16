@@ -4,7 +4,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\form\Generator */
+/* @var $generator myzero1\yii2giiplus\generators\form\Generator */
 
 echo "<?php\n";
 ?>
