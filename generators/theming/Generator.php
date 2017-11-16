@@ -93,6 +93,7 @@ class Generator extends \myzero1\yii2giiplus\Generator
         }
 
         $viewPath = '@' . str_replace('\\', '/', $this->ns) . '/' . $this->getThemingName($this->themingID) . '/views';
+        $assetName = $this->ns . '\\' . $this->getThemingName($this->themingID) . '\\assets\\ThemingAsset';
 
         $output = <<<EOD
 <p>The module has been generated successfully.</p>
@@ -125,8 +126,9 @@ $output = $output . '<p> The usefull setting. </p>';
             'class' => 'yii\web\AssetManager',
             'linkAssets' => true,//link to assets,no cache.used in develop.
             'bundles'=> [
-                'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',// setting the skin
+                '{$assetName}' => [
+                    'skin' => 'skin-blue',// skin-{blue|black|purple|green|red|yellow}[-light],example skin-blue,skin-blue-light
+                    
                 ],
             ],
             'assetMap' => [
