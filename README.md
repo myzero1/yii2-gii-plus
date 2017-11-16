@@ -40,10 +40,11 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 return [
-    'bootstrap' => ['gii'],
+    'bootstrap' => ['yii2giiplus'],
     'modules' => [
-        'gii' => [
+        'yii2giiplus' => [
             'class' => 'myzero1\yii2giiplus\Module',
+            'allowedIPs' => ['*']
         ],
         // ...
     ],
@@ -54,13 +55,13 @@ return [
 You can then access Gii through the following URL:
 
 ```
-http://localhost/path/to/index.php?r=gii
+http://localhost/path/to/index.php?r=yii2giiplus
 ```
 
 or if you have enabled pretty URLs, you may use the following URL:
 
 ```
-http://localhost/path/to/index.php/gii
+http://localhost/path/to/index.php/yii2giiplus
 ```
 
 Using the same configuration for your console application, you will also be able to access Gii via
