@@ -22,7 +22,7 @@ or add
 to the require-dev section of your `composer.json` file.
 
 
-Usage
+Setting
 -----
 
 Once the extension is installed, simply modify your application configuration as follows:
@@ -40,6 +40,10 @@ return [
     // ...
 ];
 ```
+
+
+Usage
+-----
 
 You can then access Gii through the following URL:
 
