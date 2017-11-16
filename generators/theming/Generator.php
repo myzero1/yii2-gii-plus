@@ -130,7 +130,8 @@ $output = $output . '<p> The usefull setting. </p>';
                 ],
             ],
             'assetMap' => [
-                'AdminLTE.min.css' => '@web/css/AdminLTE.min.css',// replace the google font
+                'AdminLTE-local-font.min.css' => '.gitignore',// use google font
+                // 'AdminLTE.min.css' => '.gitignore',// use local font
             ],
         ],
     ......
@@ -188,6 +189,14 @@ EOD;
         $files[] = new CodeFile(
             $themingPath . '/assets/css/custom.css',
             $this->render("adminlte/assets/css/custom.css")
+        );
+        $files[] = new CodeFile(
+            $themingPath . '/assets/css/fonts.google.css',
+            $this->render("adminlte/assets/css/fonts.google.css")
+        );
+        $files[] = new CodeFile(
+            $themingPath . '/assets/css/AdminLTE-local-font.min.css',
+            $this->render("adminlte/assets/css/AdminLTE-local-font.min.css")
         );
 
         $files[] = new CodeFile(

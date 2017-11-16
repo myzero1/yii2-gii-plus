@@ -28,6 +28,7 @@ class ThemingAsset extends AssetBundle
     //public $baseUrl = '@web';
     public $css = [
         'css/custom.css',
+        'css/AdminLTE-local-font.min.css',
     ];
 
     public $js = [
