@@ -97,6 +97,9 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 'module' => $this,
             ];
         }
+
+        $this->addDefaultGii();
+
     }
 
     /**
@@ -158,13 +161,12 @@ class Module extends \yii\base\Module implements BootstrapInterface
     protected function coreGenerators()
     {
         return [
-            'model' => ['class' => 'myzero1\yii2giiplus\generators\model\Generator'],
-            'crud' => ['class' => 'myzero1\yii2giiplus\generators\crud\Generator'],
-            'controller' => ['class' => 'myzero1\yii2giiplus\generators\controller\Generator'],
-            'form' => ['class' => 'myzero1\yii2giiplus\generators\form\Generator'],
-            'module' => ['class' => 'myzero1\yii2giiplus\generators\module\Generator'],
-            'extension' => ['class' => 'myzero1\yii2giiplus\generators\extension\Generator'],
             'theming' => ['class' => 'myzero1\yii2giiplus\generators\theming\Generator'],
         ];
+    }
+
+    protected function addDefaultGii()
+    {
+        var_dump(expression);exit;
     }
 }
