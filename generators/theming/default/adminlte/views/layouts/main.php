@@ -44,7 +44,7 @@ $profile = [
     'profileUrl' => '#',
 ];
 
-$skin = isset(\Yii::$app->assetManager->bundles['<?= $assetClass ?>']['skin']) ? isset(\Yii::$app->assetManager->bundles['<?= $assetClass ?>']['skin'] : 'skin-blue';
+$skin = \Yii::$app->assetManager->bundles['<?= $assetClass?>']->skin;
 
 ?>
 
@@ -54,7 +54,7 @@ $skin = isset(\Yii::$app->assetManager->bundles['<?= $assetClass ?>']['skin']) ?
     <head>
         <?= "<?= " ?> $this->render('//layouts/head') ?>
     </head>
-    <body class="<?= "<?= " ?> $skin?>">
+    <body class="<?= "<?= " ?>$skin?>">
 
     <?= "<?php " ?> $this->beginBody(); ?>
 

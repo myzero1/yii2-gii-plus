@@ -41,5 +41,5 @@ class ThemingAsset extends AssetBundle
         '<?=$html5shiv?>'
     ];
 
-    public $skin = '_all-skins';
+    public $skin = 'skin-blue';
 }

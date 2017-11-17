@@ -23,8 +23,10 @@ use yii\helpers\StringHelper;
  */
 class Generator extends \myzero1\yii2giiplus\Generator
 {
+    const ADMINLTE = 1;
+
     public $ns;
-    public $themingID = 1;
+    public $themingID = self::ADMINLTE;
 
 
     /**
@@ -84,6 +86,8 @@ class Generator extends \myzero1\yii2giiplus\Generator
      */
     public function successMessage()
     {
+        $this->addRequiresToComposer();
+
         if (Yii::$app->hasModule($this->themingID)) {
             $link = Html::a('try it now', Yii::$app->getUrlManager()->createUrl($this->themingID), ['target' => '_blank']);
 
@@ -91,7 +95,6 @@ class Generator extends \myzero1\yii2giiplus\Generator
         }
 
         $viewPath = '@' . str_replace('\\', '/', $this->ns) . '/' . $this->getThemingName($this->themingID) . '/views';
-        $assetName = $this->ns . '\\' . $this->getThemingName($this->themingID) . '\\assets\\ThemingAsset';
 
         $output = <<<EOD
 <p>The module has been generated successfully.</p>
@@ -116,6 +119,8 @@ $output = $output . '<pre>' . highlight_string($code, true) . '</pre>';
 
 $output = $output . '<p> The usefull setting. </p>';
 
+$assetClass = $this->ns . '\\' . $this->getThemingName($this->themingID) . '\assets\ThemingAsset';
+
         $code2 = <<<EOD
 <?php
     ......
@@ -124,9 +129,8 @@ $output = $output . '<p> The usefull setting. </p>';
             'class' => 'yii\web\AssetManager',
             'linkAssets' => true,//link to assets,no cache.used in develop.
             'bundles'=> [
-                '{$assetName}' => [
-                    'skin' => 'skin-blue',// skin-{blue|black|purple|green|red|yellow}[-light],example skin-blue,skin-blue-light
-                    
+                '{$assetClass}' => [
+                    'skin' => 'skin-red',// skin-{blue|black|purple|green|red|yellow}[-light],example skin-blue,skin-blue-light
                 ],
             ],
             'assetMap' => [
@@ -275,5 +279,26 @@ EOD;
         ];
 
         return $aThemingName[$id];
+    }
+
+    /**
+     * @return string the controller namespace of the module.
+     */
+    public function addRequiresToComposer()
+    {
+        $path = \Yii::getAlias('@app/../composer.json');
+
+        $composerContent = json_decode(file_get_contents($path),true);
+
+        switch ($this->themingID) {
+            case self::ADMINLTE:
+                $composerContent['require']['bower-asset/jquery-slimscroll'] = '^1.3';
+                $composerContent['require']['bower-asset/html5shiv'] = '^3.0';
+                $composerContent['require']['bower-asset/font-awesome'] = '^4.0';
+                $composerContent['require']['bower-asset/admin-lte'] = '^2.3.11';
+                break;
+        }
+
+       file_put_contents($path, str_replace('\\', '', json_encode($composerContent, JSON_PRETTY_PRINT)));
     }
 }
