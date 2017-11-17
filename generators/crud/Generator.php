@@ -51,7 +51,7 @@ class Generator extends \myzero1\yii2giiplus\Generator
     {
         parent::init();
         // var_dump('expression');exit;
-        $this->templates['adminlte crud'] = Yii::getAlias('@yii/gii/generators/theming/default/adminlte/crud');
+        $this->templates['adminlte crud'] = Yii::getAlias('@myzero1/yii2giiplus/generators/theming/default/adminlte/crud');
     }
 
     /**
