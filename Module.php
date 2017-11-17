@@ -97,6 +97,9 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 'module' => $this,
             ];
         }
+
+        $this->addDefaultGii($app);
+
     }
 
     /**
@@ -158,13 +161,30 @@ class Module extends \yii\base\Module implements BootstrapInterface
     protected function coreGenerators()
     {
         return [
-            'model' => ['class' => 'myzero1\yii2giiplus\generators\model\Generator'],
-            'crud' => ['class' => 'myzero1\yii2giiplus\generators\crud\Generator'],
-            'controller' => ['class' => 'myzero1\yii2giiplus\generators\controller\Generator'],
-            'form' => ['class' => 'myzero1\yii2giiplus\generators\form\Generator'],
-            'module' => ['class' => 'myzero1\yii2giiplus\generators\module\Generator'],
-            'extension' => ['class' => 'myzero1\yii2giiplus\generators\extension\Generator'],
             'theming' => ['class' => 'myzero1\yii2giiplus\generators\theming\Generator'],
+            'gii' => ['class' => 'myzero1\yii2giiplus\generators\gii\Generator'],
         ];
+    }
+
+    protected function addDefaultGii($app)
+    {
+        $app->setModules(
+            [
+                'gii' => [
+                    'class' => '\yii\gii\Module',
+                    'allowedIPs' => $this->allowedIPs,
+                    'generators' => [
+                        'crud' => [
+                            'class' => \yii\gii\generators\crud\Generator::class,
+                            'templates' => [
+                                'adminlte' => Yii::getAlias('@myzero1/yii2giiplus/generators/theming/default/adminlte/crud')
+                            ],
+                            'template' => 'adminlte',
+                            // 'messageCategory' => 'backend'
+                        ]
+                    ]
+                ]
+            ]
+        );
     }
 }

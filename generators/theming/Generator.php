@@ -292,6 +292,7 @@ EOD;
 
         switch ($this->themingID) {
             case self::ADMINLTE:
+                $composerContent['require']['yiisoft/yii2-jui'] = '^2.0.0';
                 $composerContent['require']['bower-asset/jquery-slimscroll'] = '^1.3';
                 $composerContent['require']['bower-asset/html5shiv'] = '^3.0';
                 $composerContent['require']['bower-asset/font-awesome'] = '^4.0';
