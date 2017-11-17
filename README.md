@@ -16,7 +16,7 @@ php composer.phar require-dev myzero1/yii2-gii-plus：1.*
 or add
 
 ```
-"myzero1/yii2-gii-plus": "~2.0.0"
+"myzero1/yii2-gii-plus": "~1.0.0"
 ```
 
 to the require-dev section of your `composer.json` file.
