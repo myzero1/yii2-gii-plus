@@ -31,7 +31,7 @@ $asset = myzero1\yii2giiplus\GiiAsset::register($this);
             'options' => ['class' => 'nav navbar-nav navbar-right'],
             'items' => [
                 ['label' => 'Home', 'url' => ['default/index']],
-                ['label' => 'Help', 'url' => 'http://www.yiiframework.com/doc-2.0/guide-tool-gii.html'],
+                ['label' => 'Help', 'url' => 'https://github.com/myzero1/yii2-tools'],
                 ['label' => 'Application', 'url' => Yii::$app->homeUrl],
             ],
         ]);
