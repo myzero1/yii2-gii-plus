@@ -162,6 +162,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         return [
             'theming' => ['class' => 'myzero1\yii2giiplus\generators\theming\Generator'],
+            'gii' => ['class' => 'myzero1\yii2giiplus\generators\gii\Generator'],
         ];
     }
 
@@ -185,6 +186,5 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 ]
             ]
         );
-        var_dump('expression');exit;
     }
 }
