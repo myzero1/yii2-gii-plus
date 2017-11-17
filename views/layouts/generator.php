@@ -9,7 +9,7 @@ use yii\helpers\Html;
 $generators = Yii::$app->controller->module->generators;
 $activeGenerator = Yii::$app->controller->generator;
 ?>
-<?php $this->beginContent('@yii/gii/views/layouts/main.php'); ?>
+<?php $this->beginContent('@myzero1/yii2giiplus/views/layouts/main.php'); ?>
 <div class="row">
     <div class="col-md-3 col-sm-4">
         <div class="list-group">
