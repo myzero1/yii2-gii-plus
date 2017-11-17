@@ -26,7 +26,7 @@ class Generator extends \myzero1\yii2giiplus\Generator
     const ADMINLTE = 1;
 
     public $ns;
-    public $themingID = ADMINLTE;
+    public $themingID = self::ADMINLTE;
 
 
     /**
@@ -119,6 +119,8 @@ $output = $output . '<pre>' . highlight_string($code, true) . '</pre>';
 
 $output = $output . '<p> The usefull setting. </p>';
 
+$assetClass = $this->ns . '\\' . $this->getThemingName($this->themingID) . '\assets\ThemingAsset';
+
         $code2 = <<<EOD
 <?php
     ......
@@ -127,8 +129,8 @@ $output = $output . '<p> The usefull setting. </p>';
             'class' => 'yii\web\AssetManager',
             'linkAssets' => true,//link to assets,no cache.used in develop.
             'bundles'=> [
-                'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',// setting the skin
+                '{$assetClass}' => [
+                    'skin' => 'skin-red',// skin-{blue|black|purple|green|red|yellow}[-light],example skin-blue,skin-blue-light
                 ],
             ],
             'assetMap' => [
@@ -282,14 +284,14 @@ EOD;
     /**
      * @return string the controller namespace of the module.
      */
-    public function addRequiresToComposer($id)
+    public function addRequiresToComposer()
     {
         $path = \Yii::getAlias('@app/../composer.json');
 
         $composerContent = json_decode(file_get_contents($path),true);
 
-        switch ($themingID) {
-            case ADMINLTE:
+        switch ($this->themingID) {
+            case self::ADMINLTE:
                 $composerContent['require']['bower-asset/jquery-slimscroll'] = '^1.3';
                 $composerContent['require']['bower-asset/html5shiv'] = '^3.0';
                 $composerContent['require']['bower-asset/font-awesome'] = '^4.0';
@@ -297,6 +299,6 @@ EOD;
                 break;
         }
 
-        file_put_contents($path, str_replace('\\', '', json_encode($composerContent, JSON_PRETTY_PRINT)));
+       file_put_contents($path, str_replace('\\', '', json_encode($composerContent, JSON_PRETTY_PRINT)));
     }
 }

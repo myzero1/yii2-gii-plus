@@ -44,6 +44,8 @@ $profile = [
     'profileUrl' => '#',
 ];
 
+$skin = \Yii::$app->assetManager->bundles['<?= $assetClass?>']->skin;
+
 ?>
 
 <?= "<?= " ?> $this->beginPage(); ?>
@@ -52,7 +54,7 @@ $profile = [
     <head>
         <?= "<?= " ?> $this->render('//layouts/head') ?>
     </head>
-    <body class="skin-blue">
+    <body class="<?= "<?= " ?>$skin?>">
 
     <?= "<?php " ?> $this->beginBody(); ?>
 
