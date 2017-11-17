@@ -30,6 +30,9 @@
         "bower-asset/flot": "^0.8",
         "bower-asset/typeahead.js": "0.10.* | ~0.11.0"
     },
+    "require-dev": {
+        "yiisoft/yii2-gii": "~2.0.0",
+    },
     "autoload": {
         "psr-4": {
             "myzero1\\yii2giiplus\\": ""
