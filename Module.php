@@ -98,7 +98,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             ];
         }
 
-        $this->addDefaultGii();
+        $this->addDefaultGii($app);
 
     }
 
@@ -165,8 +165,26 @@ class Module extends \yii\base\Module implements BootstrapInterface
         ];
     }
 
-    protected function addDefaultGii()
+    protected function addDefaultGii($app)
     {
-        var_dump(expression);exit;
+        $app->setModules(
+            [
+                'gii' => [
+                    'class' => '\yii\gii\Module',
+                    'allowedIPs' => $this->allowedIPs,
+                    'generators' => [
+                        'crud' => [
+                            'class' => \yii\gii\generators\crud\Generator::class,
+                            'templates' => [
+                                'adminlte' => Yii::getAlias('@myzero1/yii2giiplus/generators/theming/default/adminlte/crud')
+                            ],
+                            'template' => 'adminlte',
+                            // 'messageCategory' => 'backend'
+                        ]
+                    ]
+                ]
+            ]
+        );
+        var_dump('expression');exit;
     }
 }
