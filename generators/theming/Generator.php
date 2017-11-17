@@ -23,10 +23,10 @@ use yii\helpers\StringHelper;
  */
 class Generator extends \myzero1\yii2giiplus\Generator
 {
-    const THEMING_ADMINLTE = 1;
+    const ADMINLTE = 1;
 
     public $ns;
-    public $themingID = THEMING_ADMINLTE;
+    public $themingID = ADMINLTE;
 
 
     /**
@@ -86,6 +86,8 @@ class Generator extends \myzero1\yii2giiplus\Generator
      */
     public function successMessage()
     {
+        $this->addRequiresToComposer();
+
         if (Yii::$app->hasModule($this->themingID)) {
             $link = Html::a('try it now', Yii::$app->getUrlManager()->createUrl($this->themingID), ['target' => '_blank']);
 
@@ -275,5 +277,26 @@ EOD;
         ];
 
         return $aThemingName[$id];
+    }
+
+    /**
+     * @return string the controller namespace of the module.
+     */
+    public function addRequiresToComposer($id)
+    {
+        $path = \Yii::getAlias('@app/../composer.json');
+
+        $composerContent = json_decode(file_get_contents($path),true);
+
+        switch ($themingID) {
+            case ADMINLTE:
+                $composerContent['require']['bower-asset/jquery-slimscroll'] = '^1.3';
+                $composerContent['require']['bower-asset/html5shiv'] = '^3.0';
+                $composerContent['require']['bower-asset/font-awesome'] = '^4.0';
+                $composerContent['require']['bower-asset/admin-lte'] = '^2.3.11';
+                break;
+        }
+
+        file_put_contents($path, str_replace('\\', '', json_encode($composerContent, JSON_PRETTY_PRINT)));
     }
 }
