@@ -31,18 +31,12 @@
         "bower-asset/jquery-slimscroll": "^1.3",
         "bower-asset/flot": "^0.8"
     },
+    "require-dev": {
+        "yiisoft/yii2-gii": "~2.0.0"
+    },
     "autoload": {
         "psr-4": {
             "myzero1\\yii2giiplus\\": ""
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
         }
     }
 }
