@@ -29,24 +29,18 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 ...
-if (!YII_ENV_TEST) {
-    $config['bootstrap'][] = 'myzero1';
-    $config['modules']['myzero1'] = [
-        'class' => 'myzero1\gii\Module',
-        'allowedIPs' => ['*'],
-        // 'generators' => [
-        //     'myzero1_mvc' => ['class' => 'myzero1\gii\generators\mvc\Generator'],
-        //     'myzero1_crud' => [
-        //         'class' => 'myzero1\gii\generators\crud\Generator',
-        //         'templates' => [
-        //             'adminlte' => '@myzero1/gii/generators/theming/default/adminlte/_gii_templates/crud',
-        //         ],
-        //         'template' => 'adminlte',
-        //         'messageCategory' => 'backend'
-        //     ],
-        // ]
-    ];
-}
+-return [
+    'bootstrap' => ['yii2giiplus'],
+    'modules' => [
+        'yii2giiplus' => [
+            'class' => 'myzero1\yii2giiplus\Module',
+            'allowedIPs' => ['*']
+        ],
+        // ...
+    ],
+    // ...
+];
+...
 ```
 
 
@@ -56,11 +50,11 @@ Usage
 You can then access Gii through the following URL:
 
 ```
-http://localhost/path/to/index.php?r=myzero1
+http://localhost/path/to/index.php?r=yii2giiplus
 ```
 
 or if you have enabled pretty URLs, you may use the following URL:
 
 ```
-http://localhost/path/to/index.php/myzero1
+http://localhost/path/to/index.php/yii2giiplus
 ```
