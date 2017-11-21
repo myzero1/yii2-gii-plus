@@ -5,9 +5,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\yii2giiplus\generators\theming;
+namespace myzero1\gii\generators\theming;
 
-use myzero1\yii2giiplus\CodeFile;
+use yii\gii\CodeFile;
 use yii\helpers\Html;
 use Yii;
 use yii\helpers\StringHelper;
@@ -21,7 +21,7 @@ use yii\helpers\StringHelper;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Generator extends \myzero1\yii2giiplus\Generator
+class Generator extends \yii\gii\Generator
 {
     const ADMINLTE = 1;
 
@@ -32,9 +32,21 @@ class Generator extends \myzero1\yii2giiplus\Generator
     /**
      * @inheritdoc
      */
+    public function init()
+    {
+        parent::init();
+
+        // // $this->templates = [
+        //     'AdminLte' => 'qq',
+        // // ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getName()
     {
-        return 'Theming Generator';
+        return 'Myzero1 Theming Generator';
     }
 
     /**
@@ -76,8 +88,8 @@ class Generator extends \myzero1\yii2giiplus\Generator
     public function hints()
     {
         return [
-            'themingID' => 'This refers to the ID of the module, e.g., <code>admin</code>.',
-            'ns' => 'This is the fully qualified class name of the module, e.g., <code>app\modules\admin\Module</code>.',
+            'themingID' => 'This refers to the ID of the theming, e.g., <code>adminlte</code>.',
+            'ns' => 'This is the fully qualified namespace of the theming, e.g., <code>(eg:backend\themes)</code>.',
         ];
     }
 
@@ -141,7 +153,73 @@ $assetClass = $this->ns . '\\' . $this->getThemingName($this->themingID) . '\ass
     ......
 EOD;
 
-        return $output . '<pre>' . highlight_string($code2, true) . '</pre>';
+$output = $output . '<pre>' . highlight_string($code2, true) . '</pre>';
+
+$output = $output . '<p> Added the following requires to the section of require to composer.json. </p>';
+
+$sComposerRequires = '';
+foreach ($this->getComposerRequires($this->themingID)['require'] as $key => $value) {
+    $sComposerRequires .= sprintf('        "%s":"%s",',$key,$value) . "\n";
+}
+$sComposerRequires = trim($sComposerRequires,",\n");
+
+// $sComposerRequires = json_encode($this->getComposerRequires($this->themingID)['require'], JSON_PRETTY_PRINT);
+// $sComposerRequires = trim($sComposerRequires,'{}');
+
+        $code3 = <<<EOD
+{
+    ......
+    "require": {
+        ......
+{$sComposerRequires}
+        ......
+    }
+    ......
+}
+EOD;
+
+        return $output . '<pre>' . highlight_string($code3, true) . '</pre>';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function noticeMessage()
+    {
+
+        $sComposerRequires = '';
+        foreach ($this->getComposerRequires($this->themingID)['require'] as $key => $value) {
+            $sComposerRequires .= sprintf('        "%s":"%s",',$key,$value) . "\n";
+        }
+        $sComposerRequires = trim($sComposerRequires,",\n");
+
+
+        $code = <<<EOD
+{
+    ......
+    "require": {
+        ......
+{$sComposerRequires}
+        ......
+    }
+    ......
+}
+EOD;
+
+        $code = highlight_string($code, true);
+
+        $output = <<<EOD
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        Myzero1 Theming Generator will add the requires to composer.json
+    </div>
+    <div class="panel-body">
+        {$code}
+    </div>
+</div>
+EOD;
+
+        return $output;
     }
 
     /**
@@ -150,11 +228,9 @@ EOD;
     public function requiredTemplates()
     {
         return [
-            // 'AdminLte.php',
-            // 'FontAwesome.php',
-            // 'Html5shiv.php',
-            // 'JquerySlimScroll.php',
-            // 'AdminLteThemingAsset.php',
+            // 'module.php',
+            // 'controller.php',
+            // 'view.php'
         ];
     }
 
@@ -290,16 +366,34 @@ EOD;
 
         $composerContent = json_decode(file_get_contents($path),true);
 
-        switch ($this->themingID) {
-            case self::ADMINLTE:
-                $composerContent['require']['yiisoft/yii2-jui'] = '^2.0.0';
-                $composerContent['require']['bower-asset/jquery-slimscroll'] = '^1.3';
-                $composerContent['require']['bower-asset/html5shiv'] = '^3.0';
-                $composerContent['require']['bower-asset/font-awesome'] = '^4.0';
-                $composerContent['require']['bower-asset/admin-lte'] = '^2.3.11';
-                break;
+        $aComposerRequires = $this->getComposerRequires($this->themingID);
+
+        foreach ($aComposerRequires['require'] as $key => $value) {
+            $composerContent['require'][$key] = $value;
         }
 
        file_put_contents($path, str_replace('\\', '', json_encode($composerContent, JSON_PRETTY_PRINT)));
+    }
+
+    /**
+     * @return string the controller namespace of the module.
+     */
+    public function getComposerRequires($id=1)
+    {
+        $aComposerRequires = array();
+
+        switch ($id) {
+            case self::ADMINLTE:
+                $aComposerRequires['require'] = [
+                    'yiisoft/yii2-jui' => '^2.0.0',
+                    'bower-asset/jquery-slimscroll' => '^1.3',
+                    'bower-asset/html5shiv' => '^3.0',
+                    'bower-asset/font-awesome' => '^4.0',
+                    'bower-asset/admin-lte' => '^2.3.11',
+                ];
+                break;
+        }
+
+       return $aComposerRequires;
     }
 }
