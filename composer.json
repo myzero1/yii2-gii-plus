@@ -1,5 +1,5 @@
 {
-	"name": "myzero1/yii2-gii",
+	"name": "myzero1/yii2-gii-plus",
 	"description": "Yii2 custom generator for gii",
 	"keywords": ["yii2", "gii","migration","mvc","theme"],
 	"type": "yii2-extension",
