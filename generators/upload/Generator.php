@@ -207,7 +207,7 @@ EOD;
      */
     public function getMyzero1RuntimeDir()
     {
-        $myzero1RuntimeDir = Yii::getAlias('@vendor/myzero1/yii2-gii/runtime');
+        $myzero1RuntimeDir = Yii::getAlias('@vendor/myzero1/yii2-gii-plus/runtime');
 
         return $myzero1RuntimeDir;
     }
