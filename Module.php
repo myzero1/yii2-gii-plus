@@ -20,7 +20,7 @@ use yii\web\ForbiddenHttpException;
  * return [
  *     'bootstrap' => ['gii'],
  *     'modules' => [
- *         'gii' => ['class' => 'myzero1\yii2giiplus\Module'],
+ *         'gii' => ['class' => 'yii\gii\Module'],
  *     ],
  * ]
  * ~~~
@@ -44,7 +44,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'myzero1\yii2giiplus\controllers';
+    public $controllerNamespace = 'yii\gii\controllers';
     /**
      * @var array the list of IPs that are allowed to access this module.
      * Each array element represents a single IP filter which can be either an IP address
@@ -77,6 +77,33 @@ class Module extends \yii\base\Module implements BootstrapInterface
      * Defaults to 0777, meaning the directory can be read, written and executed by all users.
      */
     public $newDirMode = 0777;
+    /**
+     * @var integer the permission to be set for newly generated directories.
+     * This value will be used by PHP chmod function.
+     * Defaults to 0777, meaning the directory can be read, written and executed by all users.
+     */
+    public $myzero1Tools = [
+        'myzero1_theming' => [
+            'name' => 'Myzero1 theming Generator',
+            'description' => 'This is a description.',
+            'url' => '/myzero1/gii/default/view?id=myzero1_theming',
+        ],
+        'myzero1_upload' => [
+            'name' => 'Myzero1 upload Widget',
+            'description' => 'This is a description.',
+            'url' => '/myzero1/gii/default/view?id=myzero1_upload',
+        ],
+        'myzero1_captcha' => [
+            'name' => 'Myzero1 captcha Widget',
+            'description' => 'This is a description.',
+            'url' => '/myzero1/gii/default/view?id=myzero1_captcha',
+        ],
+        'myzero1_wysiwyg' => [
+            'name' => 'Redactor WYSIWYG Generator',
+            'description' => 'Extension Redactor WYSIWYG for Yii2 framework.',
+            'url' => '/myzero1/gii/default/view?id=myzero1_wysiwyg',
+        ],
+    ];
 
 
     /**
@@ -86,21 +113,44 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         if ($app instanceof \yii\web\Application) {
             $app->getUrlManager()->addRules([
-                ['class' => 'yii\web\UrlRule', 'pattern' => $this->id, 'route' => $this->id . '/default/index'],
-                ['class' => 'yii\web\UrlRule', 'pattern' => $this->id . '/<id:\w+>', 'route' => $this->id . '/default/view'],
-                ['class' => 'yii\web\UrlRule', 'pattern' => $this->id . '/<controller:[\w\-]+>/<action:[\w\-]+>', 'route' => $this->id . '/<controller>/<action>'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'myzero1' . $this->id, 'route' => $this->id . '/default/index'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'myzero1' . $this->id . '/<id:\w+>', 'route' => $this->id . '/default/view'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'myzero1' . $this->id . '/<controller:[\w\-]+>/<action:[\w\-]+>', 'route' => $this->id . '/<controller>/<action>'],
             ], false);
+
         } elseif ($app instanceof \yii\console\Application) {
             $app->controllerMap[$this->id] = [
-                'class' => 'myzero1\yii2giiplus\console\GenerateController',
+                'class' => 'yii\gii\console\GenerateController',
                 'generators' => array_merge($this->coreGenerators(), $this->generators),
                 'module' => $this,
             ];
         }
 
-        $this->addDefaultGii($app);
+        // add the examples to app
+        $app->setModules(
+            [
+                'redactor' => [
+                    'class' => 'yii\redactor\RedactorModule',
+                    'uploadDir' => '@webroot',
+                    'uploadUrl' => '@web',
+                ],
+            ]
+        );
 
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->addDefaultGii($this);
+
+        $this->addExample($this); // add the examples to myzero1 module
+    }
+
 
     /**
      * @inheritdoc
@@ -113,14 +163,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
         if (Yii::$app instanceof \yii\web\Application && !$this->checkAccess()) {
             throw new ForbiddenHttpException('You are not allowed to access this page.');
-        }
-
-        foreach (array_merge($this->coreGenerators(), $this->generators) as $id => $config) {
-            if (is_object($config)) {
-                $this->generators[$id] = $config;
-            } else {
-                $this->generators[$id] = Yii::createObject($config);
-            }
         }
 
         $this->resetGlobalSettings();
@@ -154,37 +196,68 @@ class Module extends \yii\base\Module implements BootstrapInterface
         return false;
     }
 
-    /**
-     * Returns the list of the core code generator configurations.
-     * @return array the list of the core code generator configurations.
-     */
-    protected function coreGenerators()
-    {
-        return [
-            'theming' => ['class' => 'myzero1\yii2giiplus\generators\theming\Generator'],
-            'gii' => ['class' => 'myzero1\yii2giiplus\generators\gii\Generator'],
-        ];
-    }
-
     protected function addDefaultGii($app)
     {
+        $generators = [
+            'myzero1_home' => [
+                'class' => \myzero1\yii2giiplus\generators\myzero1\Generator::class,
+            ],
+            'myzero1_theming' => [
+                'class' => \myzero1\yii2giiplus\generators\theming\Generator::class,
+            ],
+            'myzero1_upload' => [
+                'class' => \myzero1\yii2giiplus\generators\upload\Generator::class,
+            ],
+            'myzero1_captcha' => [
+                'class' => \myzero1\yii2giiplus\generators\captcha\Generator::class,
+            ],
+            'myzero1_wysiwyg' => [
+                'class' => \myzero1\yii2giiplus\generators\wysiwyg\Generator::class,
+            ],
+
+            // 'myzero1_mvc' => [
+            //     'class' => \myzero1\yii2giiplus\generators\mvc\Generator::class,
+            // ],
+            'crud' => [
+                'class' => \yii\gii\generators\crud\Generator::class,
+                'templates' => [
+                    'adminlte' => '@myzero1/gii/generators/theming/default/adminlte/_gii_templates/crud',
+                ],
+                'template' => 'adminlte',
+                'messageCategory' => 'backend'
+            ],
+        ];
+
+        $this->generators = array_merge($generators, $this->generators);
+
         $app->setModules(
             [
                 'gii' => [
                     'class' => '\yii\gii\Module',
                     'allowedIPs' => $this->allowedIPs,
-                    'generators' => [
-                        'crud' => [
-                            'class' => \yii\gii\generators\crud\Generator::class,
-                            'templates' => [
-                                'adminlte' => Yii::getAlias('@myzero1/yii2giiplus/generators/theming/default/adminlte/crud')
-                            ],
-                            'template' => 'adminlte',
-                            // 'messageCategory' => 'backend'
-                        ]
-                    ]
+                    'generators' => $this->generators,
                 ]
             ]
         );
     }
+
+
+    /**
+     * @return string the controller namespace of the module.
+     */
+    protected function addExample($app)
+    {
+        $app->setModules(
+            [
+                'myzero1_upload' => [
+                    'class' => 'myzero1\yii2upload\Tools',
+                    'upload' => [
+                        'basePath' => '@webroot/myzero1_upload',
+                        'baseUrl' => '@web/myzero1_upload',
+                    ],
+                ]
+            ]
+        );
+    }
+
 }

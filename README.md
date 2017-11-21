@@ -1,4 +1,4 @@
-Yii2-gii-plus
+Yii2-gii
 ========================
 It add theming generator and new template for crud.It based on [yiisoft/yii2-gii](https://github.com/yiisoft/yii2-gii)
 
@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require-dev myzero1/yii2-gii-plus：1.*
+php composer.phar require-dev myzero1/yii2-gii：1.*
 ```
 
 or add
 
 ```
-"myzero1/yii2-gii-plus": "~1.0.0"
+"myzero1/yii2-gii": "~1.0.0"
 ```
 
 to the require-dev section of your `composer.json` file.
@@ -29,18 +29,24 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 ...
--return [
-    'bootstrap' => ['yii2giiplus'],
-    'modules' => [
-        'yii2giiplus' => [
-            'class' => 'myzero1\yii2giiplus\Module',
-            'allowedIPs' => ['*']
-        ],
-        // ...
-    ],
-    // ...
-];
-...
+if (!YII_ENV_TEST) {
+    $config['bootstrap'][] = 'myzero1';
+    $config['modules']['myzero1'] = [
+        'class' => 'myzero1\yii2giiplus\Module',
+        'allowedIPs' => ['*'],
+        // 'generators' => [
+        //     'myzero1_mvc' => ['class' => 'myzero1\yii2giiplus\generators\mvc\Generator'],
+        //     'myzero1_crud' => [
+        //         'class' => 'myzero1\yii2giiplus\generators\crud\Generator',
+        //         'templates' => [
+        //             'adminlte' => '@myzero1/gii/generators/theming/default/adminlte/_gii_templates/crud',
+        //         ],
+        //         'template' => 'adminlte',
+        //         'messageCategory' => 'backend'
+        //     ],
+        // ]
+    ];
+}
 ```
 
 
@@ -50,11 +56,15 @@ Usage
 You can then access Gii through the following URL:
 
 ```
-http://localhost/path/to/index.php?r=yii2giiplus
+http://localhost/path/to/index.php?r=myzero1
+OR
+http://localhost/path/to/index.php?r=myzero1/gii
 ```
 
 or if you have enabled pretty URLs, you may use the following URL:
 
 ```
-http://localhost/path/to/index.php/yii2giiplus
+http://localhost/path/to/index.php/myzero1
+OR
+http://localhost/path/to/index.php/myzero1/gii
 ```

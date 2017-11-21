@@ -6,7 +6,9 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-$asset = myzero1\yii2giiplus\GiiAsset::register($this);
+$asset = yii\gii\GiiAsset::register($this);
+$myzero1Asset = \myzero1\yii2giiplus\assets\Myzero1Asset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,15 +25,15 @@ $asset = myzero1\yii2giiplus\GiiAsset::register($this);
         <?php $this->beginBody() ?>
         <?php
         NavBar::begin([
-            'brandLabel' => Html::img($asset->baseUrl . '/logo.png'),
-            'brandUrl' => ['default/index'],
+            'brandLabel' => Html::img($myzero1Asset->baseUrl . '/img/logo.png'),
+            'brandUrl' => ['/myzero1'],
             'options' => ['class' => 'navbar-inverse navbar-fixed-top'],
         ]);
         echo Nav::widget([
             'options' => ['class' => 'nav navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Home', 'url' => ['default/index']],
-                ['label' => 'Help', 'url' => 'https://github.com/myzero1/yii2-tools'],
+                ['label' => 'Home', 'url' => ['/myzero1']],
+                ['label' => 'Help', 'url' => 'https://github.com/myzero1'],
                 ['label' => 'Application', 'url' => Yii::$app->homeUrl],
             ],
         ]);

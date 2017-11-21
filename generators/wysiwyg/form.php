@@ -6,10 +6,7 @@
 ?>
 <div class="module-form">
 <?php
-    echo $form->field($generator, 'ns');
-    echo $form->field($generator, 'themingID')->dropDownList([
-	    1 => 'adminlte',
-	]);
+	echo $generator->showExample();
 	echo $generator->noticeMessage();
 ?>
 </div>
