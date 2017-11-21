@@ -1,6 +1,6 @@
 <?php
 
-namespace myzero1\gii\generators\migration;
+namespace myzero1\yii2giiplus\generators\migration;
 
 use Yii;
 use yii\db\Connection;

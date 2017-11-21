@@ -4,7 +4,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator myzero1\gii\generators\mvc\Generator */
+/* @var $generator myzero1\yii2giiplus\generators\mvc\Generator */
 
 echo "<?php\n";
 ?>

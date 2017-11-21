@@ -6,7 +6,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii\generators\myzero1;
+namespace myzero1\yii2giiplus\generators\myzero1;
 
 use Yii;
 use yii\gii\CodeFile;

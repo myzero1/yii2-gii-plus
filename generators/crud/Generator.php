@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii\generators\crud;
+namespace myzero1\yii2giiplus\generators\crud;
 
 use Yii;
 use yii\web\Controller;

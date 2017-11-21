@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii\generators\upload;
+namespace myzero1\yii2giiplus\generators\upload;
 
 use yii\gii\CodeFile;
 use yii\helpers\Html;

@@ -4,7 +4,7 @@
  */
 
 /* @var $this yii\web\AssetBundle */
-/* @var $generator myzero1\gii\generators\theming\Generator */
+/* @var $generator myzero1\yii2giiplus\generators\theming\Generator */
 
 $namespace = $generator->ns . '\\' . $generator->getThemingName($generator->themingID) . '\assets';
 $adminLte = '\\' . $namespace . '\common\AdminLte';

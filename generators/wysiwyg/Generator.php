@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii\generators\wysiwyg;
+namespace myzero1\yii2giiplus\generators\wysiwyg;
 
 use yii\gii\CodeFile;
 use yii\helpers\Html;

@@ -4,7 +4,7 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $generator myzero1\gii\generators\migration\Generator */
+/* @var $generator myzero1\yii2giiplus\generators\migration\Generator */
 /* @var $migrationName string migration name */
 
 echo "<?php\n";

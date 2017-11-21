@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii\generators\theming;
+namespace myzero1\yii2giiplus\generators\theming;
 
 use yii\gii\CodeFile;
 use yii\helpers\Html;

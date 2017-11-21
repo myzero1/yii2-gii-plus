@@ -32,12 +32,12 @@ Once the extension is installed, simply modify your application configuration as
 if (!YII_ENV_TEST) {
     $config['bootstrap'][] = 'myzero1';
     $config['modules']['myzero1'] = [
-        'class' => 'myzero1\gii\Module',
+        'class' => 'myzero1\yii2giiplus\Module',
         'allowedIPs' => ['*'],
         // 'generators' => [
-        //     'myzero1_mvc' => ['class' => 'myzero1\gii\generators\mvc\Generator'],
+        //     'myzero1_mvc' => ['class' => 'myzero1\yii2giiplus\generators\mvc\Generator'],
         //     'myzero1_crud' => [
-        //         'class' => 'myzero1\gii\generators\crud\Generator',
+        //         'class' => 'myzero1\yii2giiplus\generators\crud\Generator',
         //         'templates' => [
         //             'adminlte' => '@myzero1/gii/generators/theming/default/adminlte/_gii_templates/crud',
         //         ],

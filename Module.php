@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace myzero1\gii;
+namespace myzero1\yii2giiplus;
 
 use Yii;
 use yii\base\BootstrapInterface;
@@ -126,7 +126,16 @@ class Module extends \yii\base\Module implements BootstrapInterface
             ];
         }
 
-        $this->addExample($app); // add the examples to app
+        // add the examples to app
+        $app->setModules(
+            [
+                'redactor' => [
+                    'class' => 'yii\redactor\RedactorModule',
+                    'uploadDir' => '@webroot',
+                    'uploadUrl' => '@web',
+                ],
+            ]
+        );
 
     }
 
@@ -138,6 +147,8 @@ class Module extends \yii\base\Module implements BootstrapInterface
         parent::init();
 
         $this->addDefaultGii($this);
+
+        $this->addExample($this); // add the examples to myzero1 module
     }
 
 
@@ -189,23 +200,23 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         $generators = [
             'myzero1_home' => [
-                'class' => \myzero1\gii\generators\myzero1\Generator::class,
+                'class' => \myzero1\yii2giiplus\generators\myzero1\Generator::class,
             ],
             'myzero1_theming' => [
-                'class' => \myzero1\gii\generators\theming\Generator::class,
+                'class' => \myzero1\yii2giiplus\generators\theming\Generator::class,
             ],
             'myzero1_upload' => [
-                'class' => \myzero1\gii\generators\upload\Generator::class,
+                'class' => \myzero1\yii2giiplus\generators\upload\Generator::class,
             ],
             'myzero1_captcha' => [
-                'class' => \myzero1\gii\generators\captcha\Generator::class,
+                'class' => \myzero1\yii2giiplus\generators\captcha\Generator::class,
             ],
             'myzero1_wysiwyg' => [
-                'class' => \myzero1\gii\generators\wysiwyg\Generator::class,
+                'class' => \myzero1\yii2giiplus\generators\wysiwyg\Generator::class,
             ],
 
             // 'myzero1_mvc' => [
-            //     'class' => \myzero1\gii\generators\mvc\Generator::class,
+            //     'class' => \myzero1\yii2giiplus\generators\mvc\Generator::class,
             // ],
             'crud' => [
                 'class' => \yii\gii\generators\crud\Generator::class,
@@ -244,12 +255,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
                         'basePath' => '@webroot/myzero1_upload',
                         'baseUrl' => '@web/myzero1_upload',
                     ],
-                ],
-                'redactor' => [
-                    'class' => 'yii\redactor\RedactorModule',
-                    'uploadDir' => '@webroot',
-                    'uploadUrl' => '@web',
-                ],
+                ]
             ]
         );
     }

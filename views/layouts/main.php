@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $content string */
 
 $asset = yii\gii\GiiAsset::register($this);
-$myzero1Asset = \myzero1\gii\assets\Myzero1Asset::register($this);
+$myzero1Asset = \myzero1\yii2giiplus\assets\Myzero1Asset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
