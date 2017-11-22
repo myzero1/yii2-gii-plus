@@ -27,7 +27,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"myzero1\\gii\\": ""
+			"myzero1\\yii2giiplus\\": ""
 		}
 	}
 }
