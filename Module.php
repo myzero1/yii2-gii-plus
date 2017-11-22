@@ -82,29 +82,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
      * This value will be used by PHP chmod function.
      * Defaults to 0777, meaning the directory can be read, written and executed by all users.
      */
-    public $myzero1Tools = [
-        'myzero1_theming' => [
-            'name' => 'Myzero1 theming Generator',
-            'description' => 'This is a description.',
-            'url' => '/myzero1/gii/default/view?id=myzero1_theming',
-        ],
-        'myzero1_upload' => [
-            'name' => 'Myzero1 upload Widget',
-            'description' => 'This is a description.',
-            'url' => '/myzero1/gii/default/view?id=myzero1_upload',
-        ],
-        'myzero1_captcha' => [
-            'name' => 'Myzero1 captcha Widget',
-            'description' => 'This is a description.',
-            'url' => '/myzero1/gii/default/view?id=myzero1_captcha',
-        ],
-        'myzero1_wysiwyg' => [
-            'name' => 'Redactor WYSIWYG Generator',
-            'description' => 'Extension Redactor WYSIWYG for Yii2 framework.',
-            'url' => '/myzero1/gii/default/view?id=myzero1_wysiwyg',
-        ],
-    ];
-
+    public $myzero1Tools = [];
 
     /**
      * @inheritdoc
@@ -145,6 +123,8 @@ class Module extends \yii\base\Module implements BootstrapInterface
     public function init()
     {
         parent::init();
+
+        $this->myzero1Init();
 
         $this->addDefaultGii($this);
 
@@ -241,7 +221,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
         );
     }
 
-
     /**
      * @return string the controller namespace of the module.
      */
@@ -258,6 +237,68 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 ]
             ]
         );
+    }
+
+    /**
+     * @return string the controller namespace of the module.
+     */
+    protected function myzero1Init()
+    {
+        $moduleId = $this->getModuleId();
+        $this->myzero1Tools = [
+            'myzero1_theming' => [
+                'name' => 'Myzero1 theming Generator',
+                'description' => 'This is a description.',
+                'url' => $this->getUrlInModule(['/'.$moduleId.'/gii/default/view', 'id' => 'myzero1_theming']),
+            ],
+            'myzero1_upload' => [
+                'name' => 'Myzero1 upload Widget',
+                'description' => 'This is a description.',
+                'url' => $this->getUrlInModule(['/'.$moduleId.'/gii/default/view', 'id' => 'myzero1_upload']),
+            ],
+            'myzero1_captcha' => [
+                'name' => 'Myzero1 captcha Widget',
+                'description' => 'This is a description.',
+                'url' => $this->getUrlInModule(['/'.$moduleId.'/gii/default/view', 'id' => 'myzero1_captcha']),
+            ],
+            'myzero1_wysiwyg' => [
+                'name' => 'Redactor WYSIWYG Generator',
+                'description' => 'Extension Redactor WYSIWYG for Yii2 framework.',
+                'url' => $this->getUrlInModule(['/'.$moduleId.'/gii/default/view', 'id' => 'myzero1_wysiwyg']),
+            ],
+        ];
+    }
+
+    /**
+     * Normalizes [[actions]] into an array of action IDs.
+     * @return array an array of action IDs entered by the user
+     */
+    public function getUrlInModule( $params )
+    {
+        $sUrl = Yii::$app->getUrlManager()->createUrl($params);
+        $sUrlEnd = str_replace('?r=index.php', '', $sUrl);
+        return $sUrlEnd;
+    }
+
+    /**
+     * Normalizes [[actions]] into an array of action IDs.
+     * @return array an array of action IDs entered by the user
+     */
+    public function getModuleId()
+    {
+        foreach (Yii::$app->getModules() as $key => $mModule) {
+            if (is_array($mModule)) {
+                if (trim($mModule['class'], '\\') == 'myzero1\yii2giiplus\Module') {
+                    $moduleId = $key;
+                }
+            } else {
+                if (trim($mModule::className(), '\\') == 'myzero1\yii2giiplus\Module') {
+                    $moduleId = $mModule->id;
+                }
+            }
+        }
+
+        return $moduleId;
     }
 
 }
