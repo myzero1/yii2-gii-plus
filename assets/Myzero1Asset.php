@@ -12,7 +12,7 @@ class Myzero1Asset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@myzero1/gii/assets';
+    public $sourcePath = '@myzero1/yii2giiplus/assets';
 
     /**
      * @inheritdoc

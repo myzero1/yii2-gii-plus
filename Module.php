@@ -221,7 +221,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             'crud' => [
                 'class' => \yii\gii\generators\crud\Generator::class,
                 'templates' => [
-                    'adminlte' => '@myzero1/gii/generators/theming/default/adminlte/_gii_templates/crud',
+                    'adminlte' => '@myzero1/yii2giiplus/generators/theming/default/adminlte/_gii_templates/crud',
                 ],
                 'template' => 'adminlte',
                 'messageCategory' => 'backend'
