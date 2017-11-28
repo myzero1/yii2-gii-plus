@@ -60,7 +60,7 @@ class Alert extends \yii\bootstrap\Widget
             /* assign unique id to each alert box */
             $this->options['id'] = $this->getId() . '-' . $type;
 
-            echo \adminlte\widgets\covers\Alert::widget(
+            echo \<?= $namespace ?>\covers\Alert::widget(
                 [
                     'type' => $type,
                     'body' => $message,
