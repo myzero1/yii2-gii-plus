@@ -1,6 +1,12 @@
 <?php
 
-namespace adminlte\widgets\covers;
+$namespace = $generator->ns . '\\' . $generator->getThemingName($generator->themingID) . '\widgets\covers';
+
+echo "<?php\n";
+?>
+
+namespace <?= $namespace ?>;
+
 
 use Yii;
 use yii\helpers\ArrayHelper;
