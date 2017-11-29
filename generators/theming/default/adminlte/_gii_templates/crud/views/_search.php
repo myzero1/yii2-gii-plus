@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 <?php
 $count = 0;
 foreach ($generator->getColumnNames() as $attribute) {
-    if (++$count < 5) {
+    if (++$count < 3) {
         echo "    <?= " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
     } else {
         echo "    <?php // echo " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
@@ -40,7 +40,7 @@ foreach ($generator->getColumnNames() as $attribute) {
 ?>
     <div class="form-group">
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Search') ?>, ['class' => 'btn btn-primary  btn-sm']) ?>
-        <?= "<?= " ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default  btn-sm']) ?>
+        <?= "<?= // " ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default  btn-sm']) ?>
     </div>
 
     <?= "<?php " ?>ActiveForm::end(); ?>
