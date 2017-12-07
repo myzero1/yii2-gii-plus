@@ -63,7 +63,9 @@ class ThemingAsset extends AssetBundle
                 $fromNew = str_replace($sourcePath, '', $from);
 
                 if (in_array($fromNew, $this->noCachePath)) {
-                    unlink($to);
+                    if (is_file($to)) {
+                        unlink($to);
+                    }
                 }
 
                 return true;
