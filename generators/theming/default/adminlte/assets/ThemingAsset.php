@@ -26,6 +26,16 @@ class ThemingAsset extends AssetBundle
 {
     public $sourcePath = '<?= $basePathAlias ?>';
     //public $baseUrl = '@web';
+
+    public $publishOptions = [
+        'forceCopy' => YII_DEBUG,
+    ];
+
+    public $noCachePath = [
+        'css/custom.css',
+        'js/custom.js',
+    ];
+
     public $css = [
         'css/custom.css',
         'css/AdminLTE-local-font.min.css',
@@ -42,4 +52,22 @@ class ThemingAsset extends AssetBundle
     ];
 
     public $skin = 'skin-blue';
+
+    public function init()
+    {
+        parent::init();
+
+        if (YII_DEBUG) {
+            $this->publishOptions['beforeCopy'] = function ($from, $to) {
+                $sourcePath = \Yii::getAlias($this->sourcePath) . '/';
+                $fromNew = str_replace($sourcePath, '', $from);
+
+                if (in_array($fromNew, $this->noCachePath)) {
+                    unlink($to);
+                }
+
+                return true;
+            };
+        }
+    }
 }
