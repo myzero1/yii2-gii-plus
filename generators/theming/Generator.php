@@ -78,7 +78,7 @@ class Generator extends \yii\gii\Generator
     {
         return [
             'themingID' => 'Theming ID',
-            'ns' => 'Theming namespace',
+            'ns' => 'Theming namespace(eg:backend\themes\adminlte)',
         ];
     }
 
