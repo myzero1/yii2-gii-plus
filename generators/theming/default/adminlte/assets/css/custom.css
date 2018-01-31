@@ -1,3 +1,6 @@
+.wrapper{
+    position: unset;
+}
 .filter-form {
     overflow: hidden;
     padding: 30px 0;
